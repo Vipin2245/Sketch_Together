@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SketchTogether</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Comic+Neue:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>SketchTogether</h1>
+            <p class="tagline">Draw together in real-time with friends!</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="tools-panel">
+                <div class="panel-section">
+                    <h2 class="section-title">Tools</h2>
+                    <div class="tool-buttons">
+                        <button class="tool-btn active" data-tool="brush">
+                            <span class="tool-icon">✏️</span>
+                            <span>Brush</span>
+                        </button>
+                        <button class="tool-btn" data-tool="eraser">
+                            <span class="tool-icon">🧽</span>
+                            <span>Eraser</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h2 class="section-title">Colors</h2>
+                    <div class="color-palette">
+                        <div class="color-btn active" style="background-color: #333344;" data-color="#333344"></div>
+                        <div class="color-btn" style="background-color: #ff6b6b;" data-color="#ff6b6b"></div>
+                        <div class="color-btn" style="background-color: #4ecdc4;" data-color="#4ecdc4"></div>
+                        <div class="color-btn" style="background-color: #ffe66d;" data-color="#ffe66d"></div>
+                        <div class="color-btn" style="background-color: #9b5de5;" data-color="#9b5de5"></div>
+                        <div class="color-btn" style="background-color: #00bbf9;" data-color="#00bbf9"></div>
+                        <div class="color-btn" style="background-color: #f15bb5;" data-color="#f15bb5"></div>
+                        <div class="color-btn" style="background-color: #fee440;" data-color="#fee440"></div>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h2 class="section-title">Brush Size</h2>
+                    <div class="brush-size">
+                        <div class="size-preview">
+                            <div class="size-circle" id="sizePreview"></div>
+                        </div>
+                        <input type="range" min="1" max="50" value="5" class="size-slider" id="brushSize">
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn undo" id="undoBtn">Undo</button>
+                    <button class="action-btn redo" id="redoBtn">Redo</button>
+                    <button class="action-btn clear" id="clearBtn">Clear</button>
+                </div>
+            </div>
+            
+            <div class="canvas-container">
+                <canvas id="drawingCanvas"></canvas>
+                <div id="cursorsContainer"></div>
+            </div>
+            
+            <div class="users-panel">
+                <div class="panel-section">
+                    <h2 class="section-title">Collaborators</h2>
+                    <div class="user-list" id="userList">
+                        <!-- Users will be added here dynamically -->
+                    </div>
+                </div>
+                
+                <div class="connection-status">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span id="connectionStatus">Connecting...</span>
+                </div>
+                
+                <div class="room-section">
+                    <h2 class="section-title">Room</h2>
+                    <div class="room-controls">
+                        <input type="text" id="roomInput" placeholder="Room name" maxlength="20">
+                        <button id="joinRoomBtn">Join Room</button>
+                    </div>
+                    <div class="current-room">
+                        Current: <span id="currentRoom">lobby</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Draw together in real-time. Every stroke is shared instantly!</p>
+        </footer>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="canvas.js"></script>
+    <script src="websocket-client.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
